@@ -1,256 +1,162 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SPATHO.AI</title>
   <style>
     :root {
-      --bg1: #050711;
-      --bg2: #10162f;
-      --line: #233051;
-      --text: #e7ecff;
-      --muted: #a5b0d0;
-      --accent: #5cf4d8;
-      --accent-2: #7a9bff;
+      --bg: #090c16;
+      --bg-soft: #11162a;
+      --text: #eff2ff;
+      --muted: #9aabd0;
+      --accent: #54d4c3;
+      --accent-2: #7ea3ff;
     }
 
     * { box-sizing: border-box; }
-    html, body {
+
+    body {
       margin: 0;
-      min-height: 100%;
-      font-family: Inter, ui-sans-serif, -apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: var(--text);
-      background: radial-gradient(1200px 900px at 100% -10%, #202d68 0%, transparent 65%),
-                  radial-gradient(900px 700px at -10% 100%, #1a4f80 0%, transparent 55%),
-                  linear-gradient(140deg, var(--bg1), var(--bg2));
-      overflow-x: hidden;
+      background: radial-gradient(1200px 900px at 20% 0%, #1c2656 0%, transparent 60%),
+                  radial-gradient(900px 800px at 100% 100%, #122f62 0%, transparent 55%),
+                  linear-gradient(145deg, var(--bg), var(--bg-soft));
+      padding: 2rem 1rem;
     }
 
-    .background {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      overflow: hidden;
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(0px);
-      animation: drift 18s infinite linear;
-    }
-
-    .orb.one {
-      width: 36vmax;
-      height: 36vmax;
-      background: radial-gradient(circle at 20% 20%, rgba(92, 244, 216, 0.32), rgba(92, 244, 216, 0));
-      top: -16vmax;
-      right: -12vmax;
-      animation-delay: 0s;
-    }
-
-    .orb.two {
-      width: 30vmax;
-      height: 30vmax;
-      background: radial-gradient(circle at 80% 30%, rgba(122, 155, 255, 0.28), rgba(122, 155, 255, 0));
-      bottom: -14vmax;
-      left: -10vmax;
-      animation-delay: -8s;
-    }
-
-    @keyframes drift {
-      0% { transform: translate3d(0, 0, 0) scale(0.9); }
-      50% { transform: translate3d(2.5vmax, 1.2vmax, 0) scale(1.05); }
-      100% { transform: translate3d(0, 0, 0) scale(0.9); }
-    }
-
-    main {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 8vh 1rem 4rem;
-    }
-
-    .card {
-      background: rgba(12, 18, 38, 0.55);
-      border: 1px solid rgba(122, 155, 255, 0.22);
+    .panel {
+      width: min(760px, 100%);
+      background: rgba(17, 22, 42, 0.72);
+      border: 1px solid rgba(125, 140, 224, 0.24);
       border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
-      padding: 2.5rem;
-      position: relative;
-      overflow: hidden;
+      padding: clamp(1.4rem, 4vw, 2.5rem);
+      backdrop-filter: blur(7px);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
     }
 
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1.1rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+    .eyebrow {
       font-size: 0.74rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
       color: var(--accent-2);
-    }
-
-    .dot {
-      width: 0.65rem;
-      height: 0.65rem;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 0.2rem rgba(92, 244, 216, 0.25);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      letter-spacing: -0.03em;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
       line-height: 1.1;
+      letter-spacing: -0.01em;
+      max-width: 16ch;
     }
 
-    .tagline {
-      margin-top: 1rem;
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
+    .sub {
       color: var(--muted);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      align-items: baseline;
-    }
-
-    .mono {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      color: var(--accent);
-      min-width: 6.5rem;
+      margin-top: 0.8rem;
+      font-size: 1.06rem;
     }
 
     .loop {
-      margin: 1.7rem 0 1.3rem;
-      min-height: 2.5rem;
-      font-size: clamp(1.1rem, 3vw, 1.35rem);
+      margin-top: 1.2rem;
+      min-height: 2.3rem;
+      font-size: clamp(1.05rem, 3vw, 1.35rem);
       font-weight: 600;
-      color: #ffffff;
     }
 
     .loop span {
-      display: inline-block;
       color: var(--accent);
+      transition: opacity 0.3s ease;
+      opacity: 1;
     }
 
-    .loop .glow {
-      display: inline-block;
-      border-left: 2px solid var(--accent);
-      padding-left: 0.6rem;
-      margin-left: 0.35rem;
-      opacity: 0.95;
-      min-width: 16ch;
-      text-align: left;
+    .loop span.fade {
+      opacity: 0;
     }
 
     .quote {
-      margin: 1.2rem 0 1.8rem;
-      padding: 1rem;
       border-left: 2px solid var(--accent);
-      color: #dde4ff;
-      font-size: 0.98rem;
-      background: rgba(9, 14, 30, 0.35);
+      margin: 1.3rem 0;
+      padding: 0.95rem 1rem;
+      background: rgba(10, 16, 34, 0.52);
       border-radius: 12px;
+      color: #d7e0ff;
     }
 
-    .row {
+    .contact {
       display: flex;
-      gap: 0.7rem;
+      gap: 0.5rem;
       flex-wrap: wrap;
-      margin-top: 0.3rem;
-    }
-
-    a.cta {
-      color: #04101f;
-      text-decoration: none;
-      background: linear-gradient(100deg, var(--accent), #7be0ff);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      font-weight: 600;
-      padding: 0.7rem 1rem;
-      border-radius: 999px;
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
-      display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      backdrop-filter: blur(4px);
-    }
-
-    a.cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(87, 218, 203, 0.27); }
-
-    .meta {
-      margin-top: 1.4rem;
       color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    footer {
+      font-size: 0.98rem;
       margin-top: 1rem;
-      color: var(--muted);
-      font-size: 0.82rem;
+    }
+
+    .contact a {
+      color: var(--bg);
+      background: linear-gradient(120deg, var(--accent), #9fe2ff);
+      text-decoration: none;
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      .panel {
+        border-radius: 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="background" aria-hidden="true">
-    <div class="orb one"></div>
-    <div class="orb two"></div>
-  </div>
+  <main class="panel" aria-label="SPATHO.AI homepage">
+    <div class="eyebrow">SPATHO.AI</div>
+    <h1>SPATHO.AI is AI-Driven Spatial Pathologist</h1>
+    <p class="sub">Building spatial pathology that is by and for the people working closest to the tissue.</p>
 
-  <main>
-    <section class="card">
-      <div class="brand"><span class="dot"></span> SPATHO.AI</div>
-      <h1>AI-Driven Spatial Pathology, Designed for Real Labs</h1>
-      <p class="tagline">
-        <span class="mono">Theme:</span>
-        <strong>SPATHO.AI is AI-Driven Spatial Pathologist</strong>
-      </p>
+    <p class="loop" aria-live="polite">
+      SPATHO.AI is <span id="loopText">AI-Driven Spatial Pathologist</span>
+    </p>
 
-      <p class="loop" aria-live="polite">
-        SPATHO.AI is built <span id="loopText" class="glow">for the pathologist</span>
-      </p>
+    <blockquote class="quote">
+      <strong>Someone Said:</strong><br />
+      “... the spatial transcriptomics for the pathologist, by the pathologist and of the pathologist shall not ...”
+    </blockquote>
 
-      <div class="quote">
-        <strong>Someone Said:</strong><br />
-        “... the spatial transcriptomics for the pathologist, by the pathologist and of the pathologist shall not ...”
-      </div>
-
-      <p class="meta">Contact for any curious of what we are doing, join us, collaborate or invest:</p>
-      <div class="row">
-        <a class="cta" href="mailto:contact@spatho.com">contact@spatho.com</a>
-      </div>
-
-      <footer>© 2026 SPATHO.AI · Building intelligence with spatial biology and pathology</footer>
-    </section>
+    <p class="contact">
+      Contact for any curious of what we are doing, join us, collaborate or invest:
+      <a href="mailto:contact@spatho.com" id="mailto">contact@spatho.com</a>
+    </p>
   </main>
 
   <script>
     const loopText = document.getElementById('loopText');
-    const cycles = [
-      'for the pathologist',
-      'by the pathologist',
-      'with clinical-grade signals',
-      'inside one reproducible loop',
-      'designed to scale with your workflow',
+    const phrases = [
+      'AI-Driven Spatial Pathologist',
+      'built for the pathologist',
+      'built by the pathologist',
+      'built with clinical clarity',
+      'built around the loop of tissue and insight'
     ];
 
-    let cursor = 0;
+    let index = 1;
 
-    function typeLoop() {
-      const phrase = cycles[cursor % cycles.length];
-      loopText.textContent = phrase;
-      cursor = (cursor + 1) % cycles.length;
+    function rotateLoopText() {
+      loopText.classList.add('fade');
+      setTimeout(() => {
+        loopText.textContent = phrases[index];
+        loopText.classList.remove('fade');
+        index = (index + 1) % phrases.length;
+      }, 240);
     }
 
-    loopText.textContent = cycles[0];
-    cursor = 1;
-    setInterval(typeLoop, 1700);
+    setInterval(rotateLoopText, 1700);
   </script>
 </body>
-</html><!DOCTYPE html>
-<html><head><meta charset="utf-8"><title>SPATHO</title></head><body><h1>SPATHO</h1><p>Welcome to spatho.ai</p></body></html>
+</html>
