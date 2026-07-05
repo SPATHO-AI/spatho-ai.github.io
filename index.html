@@ -79,15 +79,30 @@
     }
 
     .contact a {
-      color: #5c5f66;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      padding: 0.2rem 1.15rem 0.28rem;
+      color: #ffffff;
+      background: #5f646b;
+      border: 1px solid rgba(62, 67, 74, 0.08);
+      border-radius: 999px;
+      box-shadow: 0 12px 32px rgba(78, 83, 91, 0.16);
       text-decoration: none;
+      transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
       white-space: nowrap;
+    }
+
+    .contact a:hover {
+      background: #4f555d;
+      box-shadow: 0 16px 38px rgba(78, 83, 91, 0.22);
+      transform: translateY(-1px);
     }
 
     .contact a:focus-visible {
       outline: 2px solid #8fc9c1;
       outline-offset: 0.25rem;
-      border-radius: 0.2rem;
     }
 
     @media (max-width: 820px) {
