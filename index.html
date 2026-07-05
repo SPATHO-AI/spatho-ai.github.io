@@ -58,14 +58,6 @@
       transform: translateY(1.2rem);
     }
 
-    .quote-label {
-      margin: 0 0 1.3rem;
-      color: var(--quiet);
-      font-size: 0.95rem;
-      font-weight: 500;
-      letter-spacing: 0;
-    }
-
     blockquote {
       margin: 0;
       color: #5c5e64;
@@ -80,7 +72,7 @@
       margin: 0;
       color: var(--soft);
       text-align: center;
-      font-size: 1.18rem;
+      font-size: clamp(1.55rem, 2.2vw, 2rem);
       font-weight: 400;
       letter-spacing: 0;
       line-height: 1.55;
@@ -116,9 +108,7 @@
         line-height: 1.42;
       }
 
-      .contact {
-        font-size: 1rem;
-      }
+      .contact { font-size: 1.5rem; }
     }
 
     @media (max-width: 480px) {
@@ -130,11 +120,6 @@
         font-size: 1.34rem;
       }
 
-      .quote-label {
-        margin-bottom: 0.8rem;
-        font-size: 0.86rem;
-      }
-
       blockquote {
         font-size: 1.5rem;
       }
@@ -142,16 +127,14 @@
   </style>
 </head>
 <body>
-  <main aria-label="SPATHO.AI home">
-    <h1>SPATHO.AI is AI-Driven Spatial Pathologist</h1>
+  <main>
+    <h1>AI-Driven Spatial Pathologist</h1>
 
-    <section class="quote-wrap" aria-label="Someone Said">
-      <p class="quote-label">Someone Said:</p>
-      <blockquote>"... the spatial transcriptomics for the pathologist, by the pathologist and of the pathologist shall not ..."</blockquote>
+    <section class="quote-wrap">
+      <blockquote>“... spatial transcriptomics of pathology, by pathologists, and for pathologists ...”</blockquote>
     </section>
 
     <p class="contact">
-      Contact us if you are curious about what we are doing, want to join us, collaborate, or invest:
       <a href="mailto:contact@spatho.com">contact@spatho.com</a>
     </p>
   </main>
