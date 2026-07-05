@@ -6,132 +6,136 @@
   <title>SPATHO.AI</title>
   <style>
     :root {
-      --bg: #090c16;
-      --bg-soft: #11162a;
-      --text: #eff2ff;
-      --muted: #9aabd0;
-      --accent: #54d4c3;
-      --accent-2: #7ea3ff;
+      --bg: #0a0f1a;
+      --bg2: #141c2e;
+      --text: #eef2ff;
+      --muted: #abb7d8;
+      --line: #2f3f69;
+      --ink: #5ce3ce;
+      --panel: rgba(17, 23, 42, 0.68);
     }
 
     * { box-sizing: border-box; }
 
-    body {
+    html, body {
       margin: 0;
-      min-height: 100vh;
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
       display: grid;
       place-items: center;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text);
-      background: radial-gradient(1200px 900px at 20% 0%, #1c2656 0%, transparent 60%),
-                  radial-gradient(900px 800px at 100% 100%, #122f62 0%, transparent 55%),
-                  linear-gradient(145deg, var(--bg), var(--bg-soft));
       padding: 2rem 1rem;
+      color: var(--text);
+      font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+      background:
+        radial-gradient(1200px 700px at 8% 2%, rgba(89, 126, 255, 0.22), transparent 55%),
+        radial-gradient(900px 700px at 92% 84%, rgba(92, 227, 206, 0.20), transparent 52%),
+        linear-gradient(130deg, var(--bg), var(--bg2));
     }
 
-    .panel {
-      width: min(760px, 100%);
-      background: rgba(17, 22, 42, 0.72);
-      border: 1px solid rgba(125, 140, 224, 0.24);
-      border-radius: 20px;
-      padding: clamp(1.4rem, 4vw, 2.5rem);
-      backdrop-filter: blur(7px);
-      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+    main {
+      width: min(900px, 100%);
+      background: var(--panel);
+      border: 1px solid rgba(143, 167, 250, 0.28);
+      border-radius: 18px;
+      padding: clamp(1.2rem, 4vw, 2rem);
+      backdrop-filter: blur(9px);
+      box-shadow: 0 26px 50px rgba(0, 0, 0, 0.35);
     }
 
-    .eyebrow {
-      font-size: 0.74rem;
-      letter-spacing: 0.24em;
+    .label {
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--accent-2);
-      font-weight: 600;
-      margin-bottom: 0.8rem;
+      color: #a7b5d9;
+      margin-bottom: 0.9rem;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-      max-width: 16ch;
+      font-size: clamp(1.8rem, 4.8vw, 2.9rem);
+      line-height: 1.13;
+      letter-spacing: -0.015em;
+      max-width: 20ch;
+      font-weight: 650;
     }
 
-    .sub {
-      color: var(--muted);
-      margin-top: 0.8rem;
-      font-size: 1.06rem;
-    }
-
-    .loop {
-      margin-top: 1.2rem;
-      min-height: 2.3rem;
-      font-size: clamp(1.05rem, 3vw, 1.35rem);
-      font-weight: 600;
-    }
-
-    .loop span {
-      color: var(--accent);
-      transition: opacity 0.3s ease;
+    .loopText {
+      color: var(--ink);
+      position: relative;
       opacity: 1;
+      transition: opacity 0.25s ease;
+      white-space: nowrap;
     }
 
-    .loop span.fade {
+    .loopText.fade-out {
       opacity: 0;
     }
 
     .quote {
-      border-left: 2px solid var(--accent);
-      margin: 1.3rem 0;
-      padding: 0.95rem 1rem;
-      background: rgba(10, 16, 34, 0.52);
-      border-radius: 12px;
-      color: #d7e0ff;
+      margin: 1.2rem 0;
+      padding-left: 1rem;
+      border-left: 2px solid var(--ink);
+      color: var(--text);
+      font-size: clamp(1rem, 2.8vw, 1.22rem);
+      line-height: 1.6;
+      max-width: 66ch;
+    }
+
+    .quote strong {
+      color: #cfd8ff;
+      font-size: 0.86em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     .contact {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      align-items: center;
       color: var(--muted);
-      font-size: 0.98rem;
-      margin-top: 1rem;
+      font-size: 0.97rem;
+      line-height: 1.6;
+      margin-top: 0.5rem;
     }
 
     .contact a {
       color: var(--bg);
-      background: linear-gradient(120deg, var(--accent), #9fe2ff);
+      background: linear-gradient(120deg, var(--ink), #9dd9ff);
       text-decoration: none;
-      padding: 0.55rem 0.95rem;
-      border-radius: 999px;
       font-weight: 700;
+      padding: 0.15rem 0.75rem;
+      border-radius: 999px;
+      display: inline-block;
+      margin-left: 0.3rem;
+      white-space: nowrap;
     }
 
-    @media (max-width: 600px) {
-      .panel {
-        border-radius: 16px;
+    @media (prefers-reduced-motion: reduce) {
+      .loopText { transition: none; }
+    }
+
+    @media (max-width: 640px) {
+      main {
+        border-radius: 14px;
       }
+
+      .label { margin-bottom: 0.65rem; }
     }
   </style>
 </head>
 <body>
-  <main class="panel" aria-label="SPATHO.AI homepage">
-    <div class="eyebrow">SPATHO.AI</div>
-    <h1>SPATHO.AI is AI-Driven Spatial Pathologist</h1>
-    <p class="sub">Building spatial pathology that is by and for the people working closest to the tissue.</p>
+  <main>
+    <div class="label">SPATHO.AI</div>
+    <h1>SPATHO.AI is <span class="loopText" id="loopText">AI-Driven Spatial Pathologist</span></h1>
 
-    <p class="loop" aria-live="polite">
-      SPATHO.AI is <span id="loopText">AI-Driven Spatial Pathologist</span>
-    </p>
-
-    <blockquote class="quote">
+    <p class="quote">
       <strong>Someone Said:</strong><br />
       “... the spatial transcriptomics for the pathologist, by the pathologist and of the pathologist shall not ...”
-    </blockquote>
+    </p>
 
     <p class="contact">
-      Contact for any curious of what we are doing, join us, collaborate or invest:
-      <a href="mailto:contact@spatho.com" id="mailto">contact@spatho.com</a>
+      Contact us if you are curious about what we are doing, want to join us, collaborate, or invest:
+      <a href="mailto:contact@spatho.com">contact@spatho.com</a>
     </p>
   </main>
 
@@ -139,24 +143,23 @@
     const loopText = document.getElementById('loopText');
     const phrases = [
       'AI-Driven Spatial Pathologist',
-      'built for the pathologist',
-      'built by the pathologist',
-      'built with clinical clarity',
-      'built around the loop of tissue and insight'
+      'AI-Driven Spatial Pathologist, for the pathologist',
+      'AI-Driven Spatial Pathologist, by the pathologist',
+      'AI-Driven Spatial Pathologist, of the pathologist'
     ];
 
-    let index = 1;
+    let phraseIndex = 1;
 
-    function rotateLoopText() {
-      loopText.classList.add('fade');
+    function runLoop() {
+      loopText.classList.add('fade-out');
       setTimeout(() => {
-        loopText.textContent = phrases[index];
-        loopText.classList.remove('fade');
-        index = (index + 1) % phrases.length;
-      }, 240);
+        loopText.textContent = phrases[phraseIndex];
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        loopText.classList.remove('fade-out');
+      }, 260);
     }
 
-    setInterval(rotateLoopText, 1700);
+    setInterval(runLoop, 1700);
   </script>
 </body>
 </html>
